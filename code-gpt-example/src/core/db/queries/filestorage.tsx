@@ -1,9 +1,8 @@
-import "server-only"
 import { auth } from "@clerk/nextjs/server"
 import { and, eq } from "drizzle-orm"
 import { redirect } from "next/navigation"
-import { db } from ".."
 
+import { db } from "@/core/db"
 export async function getMyImages() {
   const user = auth()
 

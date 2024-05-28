@@ -1,9 +1,8 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useUploadThing } from "@/utils/uploadthing"
+import { useUploadThing } from "@/core/lib/uploadting"
 import { toast } from "sonner"
-import { usePostHog } from "posthog-js/react"
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>
@@ -29,6 +28,48 @@ const useUploadThingInputProps = (...args: Input) => {
     },
     isUploading: $ut.isUploading,
   }
+}
+
+export function SimpleUploadButton() {
+  const router = useRouter()
+
+  const { inputProps } = useUploadThingInputProps("imageUploader", {
+    onUploadBegin() {
+      toast(
+        <div className="flex items-center gap-2 text-white">
+          <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
+        </div>,
+        {
+          duration: 100000,
+          id: "upload-begin",
+        },
+      )
+    },
+    onUploadError(error) {
+      toast.dismiss("upload-begin")
+      toast.error("Upload failed")
+    },
+    onClientUploadComplete() {
+      toast.dismiss("upload-begin")
+      toast("Upload complete!")
+
+      router.refresh()
+    },
+  })
+
+  return (
+    <div>
+      <label htmlFor="upload-button" className="cursor-pointer">
+        <UploadSVG />
+      </label>
+      <input
+        id="upload-button"
+        type="file"
+        className="sr-only"
+        {...inputProps}
+      />
+    </div>
+  )
 }
 
 export function UploadSVG() {
@@ -68,51 +109,5 @@ export function LoadingSpinnerSVG() {
         className="spinner_ajPY"
       />
     </svg>
-  )
-}
-
-export function SimpleUploadButton() {
-  const router = useRouter()
-
-  const posthog = usePostHog()
-
-  const { inputProps } = useUploadThingInputProps("imageUploader", {
-    onUploadBegin() {
-      posthog.capture("upload_begin")
-      toast(
-        <div className="flex items-center gap-2 text-white">
-          <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
-        </div>,
-        {
-          duration: 100000,
-          id: "upload-begin",
-        },
-      )
-    },
-    onUploadError(error) {
-      posthog.capture("upload_error", { error })
-      toast.dismiss("upload-begin")
-      toast.error("Upload failed")
-    },
-    onClientUploadComplete() {
-      toast.dismiss("upload-begin")
-      toast("Upload complete!")
-
-      router.refresh()
-    },
-  })
-
-  return (
-    <div>
-      <label htmlFor="upload-button" className="cursor-pointer">
-        <UploadSVG />
-      </label>
-      <input
-        id="upload-button"
-        type="file"
-        className="sr-only"
-        {...inputProps}
-      />
-    </div>
   )
 }

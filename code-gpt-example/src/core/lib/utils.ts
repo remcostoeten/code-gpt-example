@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
+import { toast } from "sonner"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -35,4 +36,8 @@ export function generateRandomString(bytes: number) {
   const array = new Uint8Array(bytes)
   crypto.getRandomValues(array)
   return [...array].map((b) => b.toString(16).padStart(2, "0")).join("")
+}
+
+export function showToaster({ message }: { message: string }) {
+  toast(message)
 }

@@ -1,10 +1,8 @@
-import ChatContent from "./chat-content"
-import ChatList, { ChatListSkeleton } from "./chat-list"
-
-import { createChat } from "./actions"
 import { Suspense } from "react"
-import ChatContentWrapper from "./chat-content-wrapper"
-
+import { createChat } from "@/app/[[...chatId]]/actions"
+import ChatContent from "@/app/[[...chatId]]/chat-content"
+import ChatContentWrapper from "@/app/[[...chatId]]/chat-content-wrapper"
+import ChatList, { ChatListSkeleton } from "@/app/[[...chatId]]/chat-list"
 export default function Page({ params }: { params: { chatId?: string[] } }) {
   const chatId = params.chatId?.[0]
   console.log({ chatId })
