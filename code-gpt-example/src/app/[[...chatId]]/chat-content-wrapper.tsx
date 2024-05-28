@@ -1,9 +1,9 @@
 import ChatContent from "./chat-content"
 import { createChat } from "./actions"
 
-import { db } from "@/db"
+import { db } from "@/core/db"
 import { eq, desc, and } from "drizzle-orm"
-import { messages as messagesTable } from "@/db/schema/messages"
+import { messages as messagesTable } from "@/core/db/schema/messages"
 
 export default async function ChatContentWrapper({
   chatId,

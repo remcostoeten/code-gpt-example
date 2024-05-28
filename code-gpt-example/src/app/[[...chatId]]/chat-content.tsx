@@ -9,7 +9,7 @@ import remarkGfm from "remark-gfm"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { vscDarkPlus as dark } from "react-syntax-highlighter/dist/esm/styles/prism"
 
-import { convertFileToBase64 } from "@/lib/utils"
+import { convertFileToBase64 } from "@/core/lib/utils"
 
 export default function ChatContent({
   createChat,

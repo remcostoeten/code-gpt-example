@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/core/lib/utils"
+import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -11,11 +12,7 @@ export const metadata: Metadata = {
   description: "AI Generated Code Prompts",
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="dark">
       <body

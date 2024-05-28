@@ -1,9 +1,9 @@
 import { auth, clerkClient } from "@clerk/nextjs/server"
 import { createUploadthing, type FileRouter } from "uploadthing/next"
 import { UploadThingError } from "uploadthing/server"
-import { db } from "~/server/db"
-import { images } from "~/server/db/schema"
-import { ratelimit } from "~/server/ratelimit"
+import { db } from "@/core/db"
+import { images } from "@/core/db/schema/images"
+import { ratelimit } from "@/core/ratelimit"
 
 const f = createUploadthing()
 

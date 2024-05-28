@@ -4,9 +4,9 @@ import { OpenAIStream, StreamingTextResponse } from "ai"
 
 import { initialProgrammerMessages } from "./messages"
 
-import { db } from "@/db"
-import { chats } from "@/db/schema/chats"
-import { messages } from "@/db/schema/messages"
+import { db } from "@/core/db"
+import { chats } from "@/core/db/schema/chats"
+import { messages } from "@/core/db/schema/messages"
 import { eq } from "drizzle-orm"
 
 export const runtime = "edge"

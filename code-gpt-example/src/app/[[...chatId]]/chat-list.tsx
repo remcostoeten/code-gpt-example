@@ -1,5 +1,5 @@
-import { db } from "@/db"
-import { chats as chatsTable } from "@/db/schema/chats"
+import { db } from "@/core/db"
+import { chats as chatsTable } from "@/core/db/schema/chats"
 import { unstable_cache as cache } from "next/cache"
 import Link from "next/link"
 

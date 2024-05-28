@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import GrowingTextArea from "./growing-text-area"
-import { cn } from "@/lib/utils"
+import { cn } from "@/core/lib/utils"
 
 import ImageSelection from "./image-selection"
 

@@ -1,9 +1,9 @@
 "use server"
 
-import { db } from "@/db"
-import { chats } from "@/db/schema/chats"
+import { db } from "@/core/db"
+import { chats } from "@/core/db/schema/chats"
 
-import { generateRandomString } from "@/lib/utils"
+import { generateRandomString } from "@/core/lib/utils"
 
 import { revalidateTag } from "next/cache"
 
