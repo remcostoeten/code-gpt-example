@@ -1,0 +1,1 @@
+ALTER TABLE `images` RENAME COLUMN `userId` TO `user_id`;

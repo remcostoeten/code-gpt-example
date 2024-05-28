@@ -2,21 +2,19 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useUploadThing } from "~/utils/uploadthing"
 import { toast } from "sonner"
-import { usePostHog } from "posthog-js/react"
 import { LoadingSpinnerSVG } from "./simple-upload-button"
-import { Button } from "~/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from "~/components/ui/popover"
+} from "@/components/ui/popover"
 import { User, auth, clerkClient } from "@clerk/nextjs/server"
-import { imageFolders } from "~/server/db/schema"
-import { db } from "~/server/db"
-import { Textarea } from "~/components/ui/textarea"
-import { Input } from "~/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+import { useUploadThing } from "@/core/lib/uploadting"
+import { db } from "@/core/db"
 
 type Input = Parameters<typeof useUploadThing>
 
@@ -45,10 +43,8 @@ const useUploadThingInputProps = (...args: Input) => {
 
 export function CreateCategoryComponent() {
   const router = useRouter()
-  const posthog = usePostHog()
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
-      posthog.capture("upload_begin")
       toast(
         <div className="flex items-center gap-2 text-white">
           <LoadingSpinnerSVG />{" "}
@@ -61,7 +57,6 @@ export function CreateCategoryComponent() {
       )
     },
     onUploadError(error) {
-      posthog.capture("upload_error", { error })
       toast.dismiss("upload-begin")
       toast.error("Upload failed")
     },

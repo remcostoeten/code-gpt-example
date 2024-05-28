@@ -7,7 +7,7 @@ export const messages = sqliteTable("messages", {
   chatId: text("chat_id")
     .notNull()
     .references(() => chats.id),
-  role: text("role", { enum: ["user", "assistant"] }).notNull(),
+  role: text("role", { enum: ["user", "system", "assistant"] }).notNull(),
   content: text("content").notNull(),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)

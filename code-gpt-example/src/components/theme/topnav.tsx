@@ -1,6 +1,6 @@
+import { CreateCategoryComponent } from "@/app/(storage)/_components/AddCategoryButton"
+import { SimpleUploadButton } from "@/app/(storage)/_components/simple-upload-button"
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
-import { SimpleUploadButton } from "./simple-upload-button"
-import { CreateCategoryComponent } from "./AddCategoryButton"
 
 export function TopNav() {
   return (

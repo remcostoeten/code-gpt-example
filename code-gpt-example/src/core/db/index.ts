@@ -7,3 +7,5 @@ const client = createClient({
 })
 
 export const db = drizzle(client)
+
+export { images } from "./schema/images"

@@ -4,6 +4,7 @@ import "./globals.css"
 
 import { cn } from "@/core/lib/utils"
 import { ReactNode } from "react"
+import { TopNav } from "@/components/theme/topnav"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,6 +22,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           "w-screen h-screen bg-white dark:bg-black text-black dark:text-white",
         )}
       >
+        <div className="flex flex-col min-h-screen">
+          <TopNav />
+        </div>
         {children}
       </body>
     </html>
