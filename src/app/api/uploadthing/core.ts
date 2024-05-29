@@ -1,9 +1,9 @@
-import { ratelimit } from "@/core/ratelimit";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { db, images } from "@/core/db";
 import { v4 as uuidv4 } from "uuid";
 
 import { UploadThingError, createUploadthing } from "uploadthing/server";
+import { ratelimit } from "@/core/db/ratelimit";
 
 type Image = {
   id: string;
@@ -20,21 +20,17 @@ export const ourFileRouter = {
       const user = auth();
       if (!user.userId) throw new UploadThingError("Unauthorized");
 
-      // const fullUserData: ClerkUser = await clerkClient.users.getUser(
-      // user.userId,
-      // )
-
       const fullUserData = await clerkClient.users.getUser(user.userId);
 
       if (fullUserData?.privateMetadata?.["can-upload"] !== true)
         throw new UploadThingError("User Does Not Have Upload Permissions");
 
-      const { success }: RateLimitResult = await ratelimit.limit(user.userId);
+      const { success } = await ratelimit.limit(user.userId);
+
       if (!success) throw new UploadThingError("Ratelimited");
 
       return { userId: user.userId };
     })
-
     .onUploadComplete(
       async ({ metadata, file }: { metadata: any; file: any }) => {
         try {

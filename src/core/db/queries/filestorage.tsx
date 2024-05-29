@@ -22,6 +22,7 @@ export async function getImage(id: number) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
+  // @ts-ignore
   const image = await db.query.images.findFirst({
     where: (model: { id: any }, { eq }: any) => eq(model.id, id),
   });
@@ -43,14 +44,5 @@ export async function deleteImage(id: number) {
         eq(model.user_id, user.userId), // Ensure you're using the correct field name as per your schema
       ),
   });
-
-  analyticsServerClient.capture({
-    distinctId: user.userId,
-    event: "delete image",
-    properties: {
-      imageId: id,
-    },
-  });
-
   redirect("/");
 }

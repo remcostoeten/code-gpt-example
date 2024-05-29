@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import "@/styles/app.css";
 import "@uploadthing/react/styles.css";
 
@@ -23,13 +24,12 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
-  children,
-  modal,
-}: {
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}) {
+type DrizzleDawgProps = {
+  children: ReactNode;
+  modal: ReactNode;
+};
+
+export default function Layout({ children, modal }: DrizzleDawgProps) {
   return (
     <ClerkProvider>
       <html lang="en" className="dark">
