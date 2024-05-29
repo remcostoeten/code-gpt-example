@@ -1,6 +1,6 @@
-import { SimpleUploadButton } from "@/app/(storage)/_components/simple-upload-button"
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
-import Link from "next/link"
+import { SimpleUploadButton } from "@/app/(storage)/_components/simple-upload-button";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 export function TopNav() {
   return (
@@ -17,5 +17,5 @@ export function TopNav() {
         </SignedIn>
       </div>
     </nav>
-  )
+  );
 }

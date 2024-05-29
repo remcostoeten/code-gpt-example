@@ -1,7 +1,7 @@
-import { sql } from "drizzle-orm"
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core"
+import { sql } from "drizzle-orm";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
-import { chats } from "./chats"
+import { chats } from "./chats";
 export const messages = sqliteTable("messages", {
   id: integer("id").notNull().primaryKey(),
   chatId: text("chat_id")
@@ -12,7 +12,7 @@ export const messages = sqliteTable("messages", {
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-})
+});
 // id
 // chat_id
 // content

@@ -1,36 +1,36 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef, TextareaHTMLAttributes } from "react"
+import { useState, useEffect, useRef, TextareaHTMLAttributes } from "react";
 
-type Props = TextareaHTMLAttributes<HTMLTextAreaElement>
+type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const GrowingTextArea = (props: Props) => {
-  const [textAreaValue, setTextAreaValue] = useState<string>("")
-  const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const [textAreaValue, setTextAreaValue] = useState<string>("");
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (textAreaRef.current) {
-      textAreaRef.current.style.height = "auto"
-      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
+      textAreaRef.current.style.height = "auto";
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
     }
-  }, [textAreaValue, props.value])
+  }, [textAreaValue, props.value]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     props.onChange
       ? props.onChange(event)
-      : setTextAreaValue(event.target.value)
-  }
+      : setTextAreaValue(event.target.value);
+  };
 
   const handleContentKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault()
+      e.preventDefault();
 
-      const form = textAreaRef.current?.closest("form")
+      const form = textAreaRef.current?.closest("form");
       if (form) {
-        form.requestSubmit()
+        form.requestSubmit();
       }
     }
-  }
+  };
 
   return (
     <textarea
@@ -42,7 +42,7 @@ const GrowingTextArea = (props: Props) => {
       style={{ resize: "none" }}
       rows={1}
     />
-  )
-}
+  );
+};
 
-export default GrowingTextArea
+export default GrowingTextArea;

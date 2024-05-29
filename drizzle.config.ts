@@ -1,4 +1,4 @@
-import type { Config } from "drizzle-kit"
+import type { Config } from "drizzle-kit";
 
 export default {
   schema: "./src/core/db/schema/*",
@@ -9,4 +9,4 @@ export default {
     authToken: process.env.DATABASE_AUTH_TOKEN,
   },
   out: "./drizzle",
-} satisfies Config
+} satisfies Config;

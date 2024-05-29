@@ -1,14 +1,14 @@
-import { clerkClient } from "@clerk/nextjs/server"
-import { Button } from "@/components/ui/button"
-import { deleteImage, getImage } from "@/core//db/queries/filestorage"
+import { clerkClient } from "@clerk/nextjs/server";
+import { Button } from "@/components/ui/button";
+import { deleteImage, getImage } from "@/core//db/queries/filestorage";
 
 export async function FullPageImageView(props: { photoId: string }) {
-  const idAsNumber = Number(props.photoId)
-  if (Number.isNaN(idAsNumber)) throw new Error("Invalid photo id")
+  const idAsNumber = Number(props.photoId);
+  if (Number.isNaN(idAsNumber)) throw new Error("Invalid photo id");
 
-  const image = await getImage(idAsNumber)
+  const image = await getImage(idAsNumber);
 
-  const userInfo = await clerkClient.users.getUser(image.userId)
+  const userInfo = await clerkClient.users.getUser(image.userId);
 
   return (
     <div className="flex h-full w-screen min-w-0 items-center justify-center text-white">
@@ -31,9 +31,9 @@ export async function FullPageImageView(props: { photoId: string }) {
         <div className="p-2">
           <form
             action={async () => {
-              "use server"
+              "use server";
 
-              await deleteImage(idAsNumber)
+              await deleteImage(idAsNumber);
             }}
           >
             <Button type="submit" variant="destructive">
@@ -43,5 +43,5 @@ export async function FullPageImageView(props: { photoId: string }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

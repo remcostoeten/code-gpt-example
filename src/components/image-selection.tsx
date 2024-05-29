@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 
 export default function ImageUploadComponent({
   selectedImage,
   setSelectedImage,
 }: {
-  selectedImage: File | undefined
-  setSelectedImage: (file: File | undefined) => void
+  selectedImage: File | undefined;
+  setSelectedImage: (file: File | undefined) => void;
 }) {
-  const [preview, setPreview] = useState<string | undefined>(undefined)
+  const [preview, setPreview] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (selectedImage) {
-      const objectUrl = URL.createObjectURL(selectedImage)
-      setPreview(objectUrl)
+      const objectUrl = URL.createObjectURL(selectedImage);
+      setPreview(objectUrl);
 
       return () => {
-        URL.revokeObjectURL(objectUrl)
-      }
+        URL.revokeObjectURL(objectUrl);
+      };
     }
-    setPreview(undefined)
-  }, [selectedImage])
+    setPreview(undefined);
+  }, [selectedImage]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    setSelectedImage(file)
-  }
+    const file = e.target.files?.[0];
+    setSelectedImage(file);
+  };
 
   const handleRemoveImage = () => {
-    setSelectedImage(undefined)
-  }
+    setSelectedImage(undefined);
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -71,5 +71,5 @@ export default function ImageUploadComponent({
         </div>
       )}
     </div>
-  )
+  );
 }

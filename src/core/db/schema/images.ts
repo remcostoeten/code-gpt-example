@@ -1,5 +1,5 @@
-import { sqliteTable, text } from "drizzle-orm/sqlite-core"
-import { sql } from "drizzle-orm"
+import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
 
 export const images = sqliteTable("images", {
   id: text("id").notNull().primaryKey(),
@@ -10,4 +10,4 @@ export const images = sqliteTable("images", {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   updatedAt: text("updatedAt"),
-})
+});

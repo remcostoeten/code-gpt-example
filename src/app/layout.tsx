@@ -1,34 +1,34 @@
-import "@/styles/app.css"
-import "@uploadthing/react/styles.css"
+import "@/styles/app.css";
+import "@uploadthing/react/styles.css";
 
-import { ClerkProvider } from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs";
 
-import { Inter } from "next/font/google"
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin"
-import { extractRouterConfig } from "uploadthing/server"
-import { Toaster } from "sonner"
+import { Inter } from "next/font/google";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { Toaster } from "sonner";
 
-import { TopNav } from "@/components/theme/topnav"
-import { cn } from "@/core/lib/utils"
-import { ourFileRouter } from "./api/uploadthing/core"
+import { TopNav } from "@/components/theme/topnav";
+import { cn } from "@/core/lib/utils";
+import { ourFileRouter } from "./api/uploadthing/core";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
-})
+});
 
 export const metadata = {
   title: "Drizzle orm practice ",
   description: "Practicing data structures with Dddddrizzlee!",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-}
+};
 
 export default function RootLayout({
   children,
   modal,
 }: {
-  children: React.ReactNode
-  modal: React.ReactNode
+  children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -58,5 +58,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

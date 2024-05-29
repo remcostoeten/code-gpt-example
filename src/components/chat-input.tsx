@@ -1,36 +1,36 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import GrowingTextArea from "./growing-text-area"
-import { cn } from "@/core/lib/utils"
+import { useState } from "react";
+import GrowingTextArea from "./growing-text-area";
+import { cn } from "@/core/lib/utils";
 
-import ImageSelection from "./image-selection"
+import ImageSelection from "./image-selection";
 
 export default function ExpandingInput({
   onSubmit,
   onStop,
   isStreaming,
 }: {
-  onSubmit?: (value: string, file?: File) => void
-  onStop?: () => void
-  isStreaming?: boolean
+  onSubmit?: (value: string, file?: File) => void;
+  onStop?: () => void;
+  isStreaming?: boolean;
 }) {
-  const [content, setContent] = useState("")
+  const [content, setContent] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | undefined>(
     undefined,
-  )
+  );
 
   const submit = (value: string) => {
-    onSubmit?.(value, selectedImage)
-    setContent("")
-    setSelectedImage(undefined)
-  }
+    onSubmit?.(value, selectedImage);
+    setContent("");
+    setSelectedImage(undefined);
+  };
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    submit(content)
-  }
+    e.preventDefault();
+    submit(content);
+  };
 
-  const buttonDisabled = content.length === 0 || isStreaming
+  const buttonDisabled = content.length === 0 || isStreaming;
 
   return (
     <div className="w-full my-10">
@@ -85,5 +85,5 @@ export default function ExpandingInput({
         )}
       </form>
     </div>
-  )
+  );
 }

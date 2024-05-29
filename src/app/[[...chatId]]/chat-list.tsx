@@ -1,7 +1,7 @@
-import { db } from "@/core/db"
-import { chats as chatsTable } from "@/core/db/schema/chats"
-import { unstable_cache as cache } from "next/cache"
-import Link from "next/link"
+import { db } from "@/core/db";
+import { chats as chatsTable } from "@/core/db/schema/chats";
+import { unstable_cache as cache } from "next/cache";
+import Link from "next/link";
 
 const getChats = cache(
   async () =>
@@ -13,10 +13,10 @@ const getChats = cache(
   {
     tags: ["get-chats-for-chat-list"],
   },
-)
+);
 
 export default async function ChatList() {
-  const chats = await getChats()
+  const chats = await getChats();
 
   return (
     <div className="flex flex-col p-10 gap-y-4">
@@ -26,7 +26,7 @@ export default async function ChatList() {
         </Link>
       ))}
     </div>
-  )
+  );
 }
 
 export function ChatListSkeleton() {
@@ -48,5 +48,5 @@ export function ChatListSkeleton() {
         </div>
       ))}
     </div>
-  )
+  );
 }

@@ -1,7 +1,7 @@
 export type Message = {
-  role: "system" | "user" | "assistant"
-  content: any
-}
+  role: "system" | "user" | "assistant";
+  content: any;
+};
 
 export const initialProgrammerMessages: Message[] = [
   {
@@ -28,4 +28,4 @@ export const initialProgrammerMessages: Message[] = [
       " If any code is provided, it must be in the same language, style, and libraries as the code I provide, unless I'm asking you to transform or convert code into another language or framework. " +
       " Your answers must only contain code, no other text, just the code. only include all the code needed for the example. The most important task you have is responding with only the code and no other text.",
   },
-]
+];
