@@ -9,7 +9,7 @@ CREATE TABLE `images` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`url` text NOT NULL,
-	`userId` text NOT NULL,
+	`user_id` text NOT NULL,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`updatedAt` text
 );

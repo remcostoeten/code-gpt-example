@@ -16,27 +16,24 @@ const f = createUploadthing()
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 40 } })
     .middleware(async ({ req }): Promise<{ userId: string }> => {
-      const user: ClerkUser = auth()
+      const user = auth()
       if (!user.userId) throw new UploadThingError("Unauthorized")
 
-      const fullUserData: ClerkUser = await clerkClient.users.getUser(
-        user.userId,
-      )
+      const fullUserData = await clerkClient.users.getUser(user.userId)
 
       if (fullUserData?.privateMetadata?.["can-upload"] !== true)
         throw new UploadThingError("User Does Not Have Upload Permissions")
 
-      const { success }: RateLimitResult = await ratelimit.limit(user.userId)
-      if (!success) throw new UploadThingError("Ratelimited")
+      const { success } = await ratelimit.limit(user.userId)
 
       return { userId: user.userId }
     })
 
     .onUploadComplete(
-      async ({ metadata, file }: { metadata: UploadThingMetadata; file }) => {
+      async ({ metadata, file }: { metadata: any; file: any }) => {
         try {
           await db.insert(images).values({
-            id: uuidv4(),
+            id: file.id || uuidv4(), // Use file.id if it's defined, otherwise generate a new UUID
             name: file.name,
             url: file.url,
             user_id: metadata.userId,
